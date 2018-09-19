@@ -1,0 +1,8 @@
+laravel/.git
+laravel/.idea
+laravel/.env
+laravel/node_modules
+laravel/vendor
+laravel/storage/framework/cache/**
+laravel/storage/framework/sessions/**
+laravel/storage/framework/views/**

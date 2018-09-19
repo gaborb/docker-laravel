@@ -1,0 +1,13 @@
+version: "3"
+services:
+  php:
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+  nginx:
+    build:
+      context: ./docker/nginx
+    links:
+      - "php:php.local"
+    ports:
+      - "8888:80"

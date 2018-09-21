@@ -11,4 +11,5 @@ RUN set -ex; \
     php -r "file_exists('.env') || copy('.env.example', '.env');"; \
     php artisan key:generate; \
     chown -R www-data:www-data storage; \
-    chown -R www-data:www-data bootstrap/cache;
+    chown -R www-data:www-data bootstrap/cache; \
+    mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini;

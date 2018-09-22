@@ -18,29 +18,17 @@ services:
     depends_on:
       - node
       - composer
-  php-dev:
-    build:
-      context: .
-      dockerfile: ./docker/php/dev.Dockerfile
-    image: local-php:dev
-    depends_on:
-      - php
     environment:
       - APP_NAME=Laravel
-      - APP_ENV=local
+      - APP_ENV=production
       - APP_KEY=4B7949ED977293B4CE603D689E6B3B98
-      - APP_DEBUG=true
+      - APP_DEBUG=false
       - APP_URL=http://localhost:8888
-    volumes:
-      - "./laravel:/var/www"
-      - "/var/www/vendor"
-      - "/var/www/bootstrap"
-      - "/var/www/storage"
   nginx:
     build:
       context: ./docker/nginx
     image: local-nginx:prod
     links:
-      - "php-dev:php.local"
+      - "php:php.local"
     ports:
       - "8888:80"

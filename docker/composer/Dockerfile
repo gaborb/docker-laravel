@@ -1,15 +1,15 @@
-FROM composer:1.7.2 as composer
+FROM composer:1.7.2
 
-RUN addgroup user \
-    && adduser -G user -s /bin/sh -D user;
+RUN addgroup developer \
+    && adduser -G developer -s /bin/sh -D developer;
 
-WORKDIR /home/user
+WORKDIR /home/developer
 
 COPY laravel .
 
-RUN chown -R user:user *
+RUN chown -R developer:developer *
 
-USER user
+USER developer
 
 RUN set -ex; \
     composer install;

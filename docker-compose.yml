@@ -18,6 +18,8 @@ services:
     depends_on:
       - node
       - composer
+    entrypoint: ""
+    command: "killall -KILL php-fpm"
   php-dev:
     build:
       context: .

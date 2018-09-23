@@ -5,6 +5,15 @@ services:
       context: .
       dockerfile: ./docker/node/Dockerfile
     image: local-node:prod
+  node-dev:
+    image: local-node:prod
+    depends_on:
+      - node
+    volumes:
+      - "./laravel:/home/developer"
+      - "/home/developer/node_modules"
+      - "watch-assets:/home/developer/public"
+    command: "npm run watch"
   composer:
     build:
       context: .
@@ -27,6 +36,7 @@ services:
     image: local-php:dev
     depends_on:
       - php
+      - node-dev
     environment:
       - APP_NAME=Laravel
       - APP_ENV=local
@@ -38,11 +48,19 @@ services:
       - "/var/www/vendor"
       - "/var/www/bootstrap"
       - "/var/www/storage"
+      - "watch-assets:/var/www/public"
   nginx:
     build:
       context: ./docker/nginx
     image: local-nginx:prod
+    depends_on:
+      - node-dev
+    volumes:
+      - "watch-assets:/var/www/public"
     links:
       - "php-dev:php.local"
     ports:
       - "8888:80"
+
+volumes:
+  watch-assets:

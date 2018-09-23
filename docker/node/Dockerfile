@@ -5,15 +5,12 @@ RUN addgroup developer \
 
 WORKDIR /home/developer
 
-COPY laravel/package.json .
-COPY laravel/webpack.mix.js .
-COPY laravel/resources resources
-COPY laravel/public public
+COPY laravel .
 
-RUN chown -R developer:developer *
+# RUN chown -R developer:developer *
 
-USER developer
+# USER developer
 
 RUN set -ex; \
-    npm i; \
-    npm run prod;
+    npm install; \
+    npm run production;

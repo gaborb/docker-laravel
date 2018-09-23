@@ -8,7 +8,7 @@ down:
 	docker-compose down
 
 sh:
-	docker-compose run --rm php sh -i
+	docker-compose run --rm php-dev sh -i
 
 build-prod:
 	docker-compose -f docker-compose.prod.yml build --no-cache

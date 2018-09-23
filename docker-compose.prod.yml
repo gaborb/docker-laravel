@@ -28,6 +28,8 @@ services:
     build:
       context: ./docker/nginx
     image: local-nginx:prod
+    depends_on:
+      - node
     links:
       - "php:php.local"
     ports:

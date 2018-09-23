@@ -10,9 +10,9 @@ services:
     depends_on:
       - node
     volumes:
-      - "./laravel:/home/developer"
-      - "/home/developer/node_modules"
-      - "watch-assets:/home/developer/public"
+      - "./laravel:/home/developer/laravel"
+      - "/home/developer/laravel/node_modules"
+      - "watch-assets:/home/developer/laravel/public"
     command: "npm run watch"
   composer:
     build:

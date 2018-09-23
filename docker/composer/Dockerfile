@@ -5,9 +5,11 @@ RUN addgroup developer \
 
 WORKDIR /home/developer
 
-COPY laravel .
+COPY laravel laravel
 
 RUN chown -R developer:developer *
+
+WORKDIR /home/developer/laravel
 
 USER developer
 
